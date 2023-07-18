@@ -1,0 +1,38 @@
+package com.spring.dao;
+
+import org.springframework.orm.hibernate5.HibernateTemplate;
+
+import com.spring.entities.Student;
+
+import jakarta.transaction.Transactional;
+
+public class StudentDao {
+	
+	private HibernateTemplate template;
+	
+	public StudentDao() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public HibernateTemplate gettemplate() {
+		return template;
+	}
+
+	public void settemplate(HibernateTemplate template) {
+		this.template = template;
+	}
+
+	public StudentDao(HibernateTemplate template) {
+		super();
+		this.template = template;
+	}
+	
+	//save student
+	@Transactional
+	public int insert(Student student) {
+		int row=(int) template.save(student);
+		return row;
+	}
+
+}
